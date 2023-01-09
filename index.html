@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,400;1,200&family=Poppins:ital,wght@0,300;1,500&family=Roboto+Condensed&family=Roboto+Mono&family=Unbounded:wght@600&display=swap" rel="stylesheet">
+    <title>The Saviour</title>
+</head>
+<body>
+   
+<div id='map' class="map"></div>
+<h1 class="location-head">Live Location</h1>
+
+
+<Script type="module">
+
+    //getting the href link
+    const currentpagelink = window.location.href;
+console.log(currentpagelink);
+
+const userid = currentpagelink.slice(
+    currentpagelink.indexOf('??') + 2,
+    currentpagelink.length);
+console.log(userid);
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getFirestore, setDoc, addDoc, updateDoc,deleteDoc ,getDoc,doc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+   // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyBobvx7IucD9z4V0TxZtsXEs4ZISqLb82M",
+  authDomain: "the-saviour-7b9a0.firebaseapp.com",
+  databaseURL: "https://the-saviour-7b9a0-default-rtdb.firebaseio.com",
+  projectId: "the-saviour-7b9a0",
+  storageBucket: "the-saviour-7b9a0.appspot.com",
+  messagingSenderId: "695103598236",
+  appId: "1:695103598236:web:d4fcbdc7cd372900fd0759",
+  measurementId: "G-9D4K0JM005"
+};
+
+let lat,lng;
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialize Cloud Firestore and get a reference to the service
+    const db = getFirestore(app);
+
+    //refresh Firebase
+
+    
+   getDoc(doc(db,'Users',userid)).then(docSnap =>{
+    if(docSnap.exists())
+    {
+        console.log('Document dtaa:',docSnap.data()['lat'] )
+        console.log('Document dtaa:',docSnap.data()['lng'] )
+       
+
+        lat=docSnap.data()['lat']
+        lng=docSnap.data()['lng']
+        document.getElementById('gmap').href=gmap;
+        document.getElementById('speed').innerHTML=docSnap.data()['Device Speed'] +" m/s"
+        document.getElementById('accuracy').innerHTML=docSnap.data()['accuracy'];
+        console.log("data updated");
+    
+    }
+    else{
+        console.log('no data' )
+    }
+    lat=docSnap.data()['lat']
+        lng=docSnap.data()['lng']
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFja3lhYmhheSIsImEiOiJjbGJ3YmxmbnowdnAyM3FueTI0azl0eWk0In0.ECf6ppvlc05hneRwfKpdSA';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            projection: 'globe',
+            style: 'mapbox://styles/hackyabhay/clby12uk8000i14p7dpk24pas',// style URL // style URL
+            center: [lng,lat ], // starting position [lng, lat]
+            zoom:18, // starting zoom
+        });
+map.addControl(new mapboxgl.NavigationControl());
+
+   })
+
+
+</Script>
+</body>
+</html>

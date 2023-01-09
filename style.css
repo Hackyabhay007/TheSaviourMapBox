@@ -1,0 +1,104 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#nav-head{
+    font-family: 'Unbounded', cursive;
+}
+nav{
+    background-color: rgb(0, 255, 229);
+    color: white;
+    padding: 20px;
+}
+
+nav ul{
+    color: white;
+    list-style: none;
+}
+
+.map{
+    height: 690px;
+    width: auto;
+    background-color: black;
+
+}
+.location-head{
+    font-family: 'Unbounded', cursive;
+    z-index: 0;
+    position: relative;
+    bottom: 70px;
+    left: 7px;
+}
+
+.user-data{
+    margin-top: -39px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(0, 255, 229);
+    padding: 40px;
+}
+.data-cont{
+    display: flex;
+    flex-direction: column;
+}
+.user-data-head{
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: rgb(0, 0, 0);
+    width: 120px;
+    padding: 1px;
+    text-align: center;
+    border-radius: 20px;
+}
+.user-info{
+    display: inline-flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    margin: 10px;
+    color: white;
+    font-size: 23px;
+    font-family: 'Jost', sans-serif;
+
+    border-radius: 20px;
+    
+}
+
+.user-info #gmap{
+    text-decoration: none;
+    color: red;
+}
+.usrdata{
+    color: rgb(244, 244, 244);
+    border-radius: 10px;
+  
+}
+.usrlabel{
+
+}
+
+/* marker */
+
+
+
+
+@media (max-width: 800px) {
+    .user-info{
+        display: inline-flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        margin: 3px;
+        color: white;
+        font-size: 15px;
+        font-family: 'Jost', sans-serif
+    }
+
+    #nav-head{
+        font-size: 20px;
+    }
+    .data-cont{
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+    }
+}
