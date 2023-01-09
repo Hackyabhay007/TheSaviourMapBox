@@ -61,13 +61,10 @@ let lat,lng;
         console.log('Document dtaa:',docSnap.data()['lng'] )
        
 
-        lat=docSnap.data()['lat']
+    lat=docSnap.data()['lat']
         lng=docSnap.data()['lng']
-        document.getElementById('gmap').href=gmap;
-        document.getElementById('speed').innerHTML=docSnap.data()['Device Speed'] +" m/s"
-        document.getElementById('accuracy').innerHTML=docSnap.data()['accuracy'];
-        console.log("data updated");
-    
+
+       
     }
     else{
         console.log('no data' )
